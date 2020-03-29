@@ -1,0 +1,14 @@
+.tab {
+    cursor: pointer;
+    flex-grow: 1;
+    padding: 12px 20px;
+    border-bottom: 4px solid transparent;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+.tab--selected {
+    pointer-events: none;
+    background-color: rgb(55,55,55);
+}

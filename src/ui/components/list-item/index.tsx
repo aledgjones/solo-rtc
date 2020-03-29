@@ -1,0 +1,18 @@
+import React, { FC, CSSProperties } from "react";
+import { merge } from "../../utils/merge";
+
+import './styles.css';
+
+interface Props {
+    id?: string;
+    className?: string;
+    style?: CSSProperties;
+
+    disabled?: boolean;
+
+    onClick?: () => void;
+}
+
+export const ListItem: FC<Props> = ({ id, className, style, disabled, onClick, children }) => {
+    return <div id={id} className={merge("ui-list-item", { 'ui-list-item--hover': !!onClick, 'ui-list-item--disabled': disabled }, className)} style={style} onClick={onClick}>{children}</div>;
+}

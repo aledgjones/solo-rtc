@@ -1,0 +1,86 @@
+.start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(50, 50, 50);
+    padding: 20px;
+}
+
+.start__brand {
+    width: 100%;
+    text-align: center;
+    color: rgb(100,100,100);
+    font-size: 36px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.start__version {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: rgb(100, 100, 100);
+    margin-top: 20px;
+}
+
+.start__form {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    border: 1px solid rgb(75,75,75);
+}
+
+.start__tabs {
+    display: flex;
+    border-bottom: 1px solid rgb(75,75,75);
+}
+
+.start__content {
+    padding: 40px 0 20px 0 !important;
+}
+
+.start__label {
+    text-align: center;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: rgb(150, 150, 150);
+}
+
+.start__input {
+    width: 100%;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    background-color: transparent;
+}
+
+.start__error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: red;
+    background-color: rgba(255, 0, 0, .2);
+    padding: 12px 20px;
+}
+
+.start__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px 20px 20px;
+}
+
+.start__buttons--error {
+    background-color: rgba(255, 0, 0, .2);
+}
+
+.ui-button--disabled {
+    background-color: rgb(60,60,60) !important;
+    color: rgb(75,75,75) !important;
+}

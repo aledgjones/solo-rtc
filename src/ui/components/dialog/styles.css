@@ -1,0 +1,23 @@
+.ui-dialog__scroller {
+    box-sizing: border-box;
+    position: relative;
+    overflow: auto;
+    max-height: 100vh;
+    z-index: 2;
+    padding: 40px;
+    width: 100%;
+}
+
+.ui-dialog__card {
+    margin: 0 auto;
+    border-radius: 8px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .4s, transform .4s;
+}
+
+.ui-dialog--show .ui-dialog__card {
+    opacity: 1;
+    transform: translateY(0);
+}

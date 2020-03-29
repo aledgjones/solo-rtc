@@ -3,23 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mdi/js": "^5.0.45",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/big.js": "^4.0.5",
+    "@types/color": "^3.0.1",
     "@types/jest": "^24.0.0",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/shortid": "0.0.29",
+    "@types/simple-peer": "^9.6.0",
+    "app-reset": "^1.0.2",
+    "big.js": "^5.2.2",
+    "color": "^3.1.2",
+    "firebase": "^7.12.0",
+    "isemail": "^3.2.0",
+    "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "shortid": "^2.2.15",
+    "simple-peer": "^9.6.2",
     "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,0 +1,16 @@
+@keyframes ui-transition__in {
+    0% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ui-transition {
+    display: block;
+    animation-fill-mode: both;
+    animation: ui-transition__in .4s;
+}
