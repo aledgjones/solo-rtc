@@ -14,7 +14,6 @@ export class Peer {
 
     constructor(private roomId: string, private pin: string) {
         this.signal.onSignal((type, data) => this.onSignal(type, data));
-
         this.connection.addEventListener('negotiationneeded', () => this.offer());
         this.connection.addEventListener('icecandidate', e => this.onIceCandidateCallback(e));
         this.connection.addEventListener('connectionstatechange', () => this.onConnectionStateChangeCallback());

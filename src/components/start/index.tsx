@@ -1,8 +1,9 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useMemo } from 'react';
 
 import { THEME, APP_VERSION } from '../../const';
 import { Button } from '../../ui/components/button';
 import Tab from '../tab';
+import { useTheme } from '../../ui/utils/theme';
 
 import './styles.css';
 
@@ -12,13 +13,25 @@ interface Props {
 
 const Start: FC<Props> = ({ toRoom }) => {
 
-    const [id, setId] = useState('');
-    const [pin, setPin] = useState('');
+    const search = useMemo(() => {
+        const search = window.location.search.slice(1);
+        const pairs = search.split('&');
+        return pairs.reduce<{ [key: string]: string }>((output, pair) => {
+            const [key, value] = pair.split('=');
+            output[key] = value;
+            return output;
+        }, {});
+    }, []);
+
+    const [id, setId] = useState(search.roomId || '');
+    const [pin, setPin] = useState(search.pin || '');
     const [page, setPage] = useState<'join' | 'host'>('join');
 
     const isId = /^\d{3}-\d{3}-\d{3}$/;
     const isPin = /^\d{6}$/;
     const valid = id && isId.test(id) && pin && isPin.test(pin);
+
+    useTheme('rgb(50,50,50)');
 
     const toRoomCallback = useCallback(() => {
         if (valid) {

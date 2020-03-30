@@ -1,46 +1,55 @@
-import { useEffect, useState, useMemo } from 'react';
-
+import { useEffect, useState } from 'react';
 import { Peer } from './peer';
 
-export function useRoom(roomId: string, pin: string, localStream?: MediaStream): [string, MediaStream | undefined] {
+export function useRoom(roomId: string, pin: string, local?: MediaStream): [string, MediaStream | undefined] {
 
-    const [connection, setConnection] = useState<Peer | undefined>();
+    const [ts, setTs] = useState(Date.now());
     const [state, setState] = useState<string>('waiting');
-    const [remoteStream, setRemoteStream] = useState<MediaStream | undefined>();
+    const [remote, setRemote] = useState<MediaStream>();
+    const [pc, setPc] = useState<Peer>();
 
     useEffect(() => {
-        const _connection = new Peer(roomId, pin);
-        setConnection(_connection);
 
-        _connection.onRemoteStream((stream: any) => {
-            setRemoteStream(stream);
+        const connection = new Peer(roomId, pin);
+
+        connection.onRemoteStream((stream: any) => {
+            setRemote(stream);
         });
 
-        _connection.onConnectionStateChange((_state: string) => {
-            setState(_state);
-            if (_state === 'disconnected') {
-                setRemoteStream(undefined);
+        connection.onConnectionStateChange((s: string) => {
+            setState(s);
+            if (s === 'disconnected') {
+                setRemote(undefined);
+                setTs(Date.now()); // force a refresh of the peer connection
             }
         });
 
+        setPc(connection);
+
         return () => {
-            setConnection(undefined);
-            _connection.destroy();
+            connection.destroy();
         }
-    }, [roomId, pin]);
+
+    }, [roomId, pin, ts]);
 
     useEffect(() => {
-        if (connection && localStream) {
-            connection.addStream(localStream);
+        const cb = () => pc && pc.destroy();
+        window.addEventListener('beforeunload', cb);
+        return () => {
+            window.removeEventListener('beforeunload', cb);
+        }
+    }, [pc]);
+
+    useEffect(() => {
+        if (pc && local) {
+            pc.addStream(local);
         }
 
         return () => {
-            if (connection) {
-                connection.removeStream();
-            }
+            pc && pc.removeStream();
         }
-    }, [connection, localStream]);
+    }, [pc, local]);
 
-    return [state, remoteStream];
+    return [state, remote];
 
 }
