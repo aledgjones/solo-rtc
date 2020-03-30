@@ -2,8 +2,8 @@ import React, { FC, useState, useCallback, useMemo } from 'react';
 
 import { THEME, APP_VERSION } from '../../const';
 import { Button } from '../../ui/components/button';
-import Tab from '../tab';
 import { useTheme } from '../../ui/utils/theme';
+import Tab from '../tab';
 
 import './styles.css';
 

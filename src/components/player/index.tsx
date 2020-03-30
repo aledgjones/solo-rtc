@@ -13,6 +13,7 @@ import { useStream } from '../../hooks/use-stream';
 import { useRoom } from '../../hooks/use-room';
 
 import './styles.css';
+import { useTheme } from '../../ui/utils/theme';
 
 interface Props {
     roomId: string;
@@ -36,6 +37,8 @@ const Player: FC<Props> = ({ roomId, pin, onExit }) => {
     const [audioDevices, videoDevices] = useDevicesList();
     const [localStream, videoId, audioId] = useStream(videoSelection, audioSelection);
     const [state, remoteStream] = useRoom(roomId, pin, localStream);
+
+    useTheme('#000000');
 
     useEffect(() => {
         if (localVideoElement.current && localStream) {
